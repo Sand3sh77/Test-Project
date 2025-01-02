@@ -10,16 +10,20 @@ import navigationButtons, {
 const NavigationSection = () => {
   const [collapsed, setCollapsed] = useState(false);
 
+  // Renders individual navigation buttons
   const renderButtons = (button: NavigationButton) => {
     return (
       <button
         key={button.id}
-        className={`w-full flex items-center justify-between py-[8px] px-[12px] rounded-[2px] text-[#475467]  transition-all duration-[200ms] ease-in-out ${
+        className={`flex items-center justify-between w-full ${
+          collapsed ? "justify-around py-[12px]" : "py-[8px]"
+        } px-[12px] rounded-[2px] text-[#475467] transition-all duration-[200ms] ease-in-out ${
           button.selected
-            ? "bg-[#EBEBF8] "
+            ? "bg-[#EBEBF8]"
             : "hover:bg-[#F8F9FB] dark:text-white"
-        } ${collapsed && "justify-evenly"} `}
+        }`}
       >
+        {/* Button Content */}
         <div className="flex items-center gap-[12px]">
           <img src={button.icon} alt={button.name} />
           <span
@@ -30,6 +34,7 @@ const NavigationSection = () => {
             {button.name}
           </span>
         </div>
+        {/* Optional Dots Icon */}
         {!collapsed && <img src={dotsHorizontal} alt="Three Dots" />}
       </button>
     );
@@ -39,10 +44,11 @@ const NavigationSection = () => {
     <section className="h-[1000px] bg-white dark:bg-[#121212] transition-[width] duration-[800ms] ease-in-out">
       {/* TOP SECTION */}
       <div
-        className={`relative flex justify-between pl-[24px] ${
-          collapsed && "pl-[15px]"
+        className={`relative flex justify-between ${
+          collapsed ? "pl-[15px]" : "pl-[24px]"
         }`}
       >
+        {/* Title and Collapse Icon */}
         <div className="flex gap-2 py-[12px]">
           <h3 className="text-[16px] leading-[22.4px] font-medium text-[#475467] dark:text-white">
             CRM
@@ -50,9 +56,10 @@ const NavigationSection = () => {
           {!collapsed && <img src={chevronDown} alt="Arrow Down Icon" />}
         </div>
 
+        {/* Collapse Button */}
         <span
           onClick={() => setCollapsed(!collapsed)}
-          className="absolute top-0 right-0 flex items-center justify-center h-[28px] w-[28px] bg-[#9696A4A8] cursor-pointer"
+          className="absolute top-0 right-0 flex items-center justify-center w-[28px] h-[28px] bg-[#9696A4A8] cursor-pointer"
         >
           <img
             src={chevronLeft}
@@ -64,9 +71,9 @@ const NavigationSection = () => {
 
       {/* BOTTOM SECTION */}
       <div
-        className={`p-[24px] pt-[8px] flex flex-row gap-[10px] transition-all duration-[800ms] ease-in-out ${
-          collapsed ? "p-[10px]" : ""
-        }`}
+        className={`flex flex-row gap-[10px] ${
+          collapsed ? "p-[10px]" : "p-[24px] pt-[8px]"
+        } transition-all duration-[800ms] ease-in-out`}
       >
         <div
           className={`flex flex-col gap-[24px] ${
@@ -74,19 +81,24 @@ const NavigationSection = () => {
           }`}
         >
           {/* SEARCH BAR */}
-          <div className="w-full px-[12px] py-[8px] rounded border-[0.5px] border-[#D0D5DD] flex justify-between">
+          <div className="flex justify-between w-full px-[12px] py-[8px] rounded border-[0.5px] border-[#D0D5DD]">
             <div className="flex gap-[12px] overflow-hidden">
-              <img src={searchLg} alt="Search Icon" />
+              <img
+                src={searchLg}
+                alt="Search Icon"
+                className="w-[24px] h-[24px]"
+              />
               {!collapsed && (
                 <input
                   type="text"
                   placeholder="Search"
-                  className="max-w-[72%] placeholder:text-[14px] font-normal placeholder:leading-[19.6px] placeholder:text-[#667085] bg-transparent focus:outline-none"
+                  className="bg-transparent max-w-[72%] text-[14px] placeholder:text-[14px] font-normal placeholder:leading-[19.6px] placeholder:text-[#667085] focus:outline-none"
                 />
               )}
             </div>
             {!collapsed && <img src={dotsHorizontal} alt="Three Dots" />}
           </div>
+
           {/* NAVIGATION BUTTONS */}
           <div className="w-full">
             {navigationButtons.map((button) => renderButtons(button))}
