@@ -1,11 +1,15 @@
 import clients from "../assets/svg/clients.svg";
 import chevronDown from "../assets/svg/chevron-down.svg";
+import chevronDownWhite from "../assets/svg/chevron-down-white.svg";
 import dotsHorizontal from "../assets/svg/dots-horizontal.svg";
 import searchLg from "../assets/svg/search-lg.svg";
 import filter from "../assets/svg/filter.svg";
 import date from "../assets/svg/date.svg";
 import check from "../assets/svg/check.svg";
 import sort from "../assets/svg/sort.svg";
+import { DataTable } from "./dataTable";
+import { columns } from "../data/columns";
+import { userData } from "../data/userData";
 
 const MainHeroSection = () => {
   return (
@@ -54,7 +58,7 @@ const MainHeroSection = () => {
               <input
                 type="text"
                 placeholder="Search Particular"
-                className="bg-transparent max-w-[85%] text-[12px] placeholder:text-[12px] font-normal placeholder:leading-[16.8px] placeholder:text-[#667085] focus:outline-none"
+                className="bg-transparent max-w-[85%] text-[12px] placeholder:text-[12px] font-normal placeholder:leading-[16.8px] placeholder:text-[#667085] focus:outline-none dark:placeholder:text-[#adabab]"
               />
             </div>
             <div className="flex gap-[20px]">
@@ -66,7 +70,7 @@ const MainHeroSection = () => {
                     alt="Search Icon"
                     className="w-[20px] h-[20px]"
                   />
-                  <div className="text-[12px] font-normal leading-[16.8px] text-[#667085] text-nowrap">
+                  <div className="text-[12px] font-normal leading-[16.8px] text-[#667085] text-nowrap dark:text-white">
                     Filter by assigned
                   </div>
                 </div>
@@ -81,7 +85,7 @@ const MainHeroSection = () => {
                     alt="Search Icon"
                     className="w-[20px] h-[20px]"
                   />
-                  <div className="text-[12px] font-normal leading-[16.8px] text-[#667085]">
+                  <div className="text-[12px] font-normal leading-[16.8px] text-[#667085] dark:text-white">
                     Date
                   </div>
                 </div>
@@ -96,7 +100,7 @@ const MainHeroSection = () => {
                     alt="Search Icon"
                     className="w-[20px] h-[20px]"
                   />
-                  <div className="text-[12px] font-normal leading-[16.8px] text-[#667085]">
+                  <div className="text-[12px] font-normal leading-[16.8px] text-[#667085] dark:text-white">
                     Status
                   </div>
                 </div>
@@ -111,7 +115,7 @@ const MainHeroSection = () => {
               {/* FILTER */}
               <div className="flex gap-[6px] items-center">
                 <img src={filter} alt="Filter" className="w-[20px] h-[20px]" />
-                <div className="text-[12px] font-normal leading-[16.8px] text-[#667085]">
+                <div className="text-[12px] font-normal leading-[16.8px] text-[#667085] dark:text-white">
                   Status
                 </div>
               </div>
@@ -120,7 +124,7 @@ const MainHeroSection = () => {
               {/* SORT */}
               <div className="flex gap-[6px] items-center">
                 <img src={sort} alt="Filter" className="w-[20px] h-[20px]" />
-                <div className="text-[12px] font-normal leading-[16.8px] text-[#667085]">
+                <div className="text-[12px] font-normal leading-[16.8px] text-[#667085] dark:text-white">
                   Sort
                 </div>
               </div>
@@ -129,7 +133,7 @@ const MainHeroSection = () => {
               {/* SAVED FILTER */}
               <div className="flex gap-[6px] items-center">
                 <img src={filter} alt="Filter" className="w-[20px] h-[20px]" />
-                <div className="text-[12px] font-normal leading-[16.8px] text-[#667085]">
+                <div className="text-[12px] font-normal leading-[16.8px] text-[#667085] dark:text-white">
                   Saved Filter
                 </div>
               </div>
@@ -138,6 +142,35 @@ const MainHeroSection = () => {
               Clear
             </div>
           </div>
+        </div>
+        {/* DATA SECTION */}
+        <div className="pl-[24px] pb-[12px]">
+          {/* NEW CIENT SECTION */}
+          <div className="w-full pl-[12px] flex items-center justify-between py-[12px]">
+            {/* BUTTON */}
+            <button className="flex items-center gap-[6px] px-[12px] py-[6px] rounded bg-[#7474C9] text-white font-medium text-[12px] leading-[16.8px]">
+              New Client
+              <img
+                src={chevronDownWhite}
+                alt="Chevron Down"
+                className="fill-white"
+              />
+            </button>
+            {/* PROSPECTS,CLIENTS,ARCHIVED SECTION */}
+            <div>
+              <button className="px-[12px] py-[4px] text-[12px] font-normal leading-[16.8px] text-[#344054] dark:text-white">
+                Prospects(18)
+              </button>
+              <button className="px-[12px] py-[4px] text-[12px] font-normal leading-[16.8px] text-[#344054] border-b-[1px] border-b-[#4AC86E] dark:text-white">
+                Clients(10)
+              </button>
+              <button className="px-[12px] py-[4px] text-[12px] font-normal leading-[16.8px] text-[#344054] dark:text-white">
+                Archived(0)
+              </button>
+            </div>
+          </div>
+          {/* TABLE */}
+          <DataTable columns={columns} data={userData} />
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ import chevronLeft from "../assets/svg/chevron-left.svg";
 import dotsHorizontal from "../assets/svg/dots-horizontal.svg";
 import navigationButtons, {
   NavigationButton,
-} from "../constants/navigationButtons";
+} from "../data/navigationButtons";
 
 const NavigationSection = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -20,7 +20,7 @@ const NavigationSection = () => {
         } px-[12px] rounded-[2px] text-[#475467] transition-all duration-[200ms] ease-in-out ${
           button.selected
             ? "bg-[#EBEBF8]"
-            : "hover:bg-[#F8F9FB] dark:text-white"
+            : "hover:bg-[#F8F9FB] dark:text-white dark:hover:bg-[#1E1E1E]"
         }`}
       >
         {/* Button Content */}
