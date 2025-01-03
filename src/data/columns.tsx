@@ -1,55 +1,112 @@
-export interface Column {
-  accessorKey: string;
-  header: string;
-}
+import { GridColDef } from "@mui/x-data-grid";
 
-export const columns: Column[] = [
+export const columns: GridColDef[] = [
   {
-    accessorKey: "name",
-    header: "Name",
+    field: "userData",
+    headerName: "Name",
+    width: 200,
+    renderCell: (params) => (
+      <div className="flex items-center gap-2 h-full">
+        <img
+          src={params.value.avatar}
+          alt={params.value.name}
+          style={{
+            width: 30,
+            height: 30,
+            borderRadius: "50%",
+            marginRight: 8,
+          }}
+        />
+        <div className="flex flex-col justify-center">
+          <span className="text-sm font-medium">{params.value.name}</span>
+          <span className="text-xs text-gray-500">{params.value.email}</span>
+        </div>
+      </div>
+    ),
+    editable: true,
   },
   {
-    accessorKey: "addedFrom",
-    header: "Added from",
+    field: "addedFrom",
+    headerName: "Added From",
+    width: 150,
+    editable: true,
   },
   {
-    accessorKey: "tags",
-    header: "Tags",
+    field: "tags",
+    headerName: "Tags",
+    width: 100,
+    editable: true,
   },
   {
-    accessorKey: "internalId",
-    header: "Internal Id",
+    field: "internalId",
+    headerName: "Internal ID",
+    width: 120,
+    editable: true,
   },
   {
-    accessorKey: "clientId",
-    header: "Client Id",
+    field: "clientId",
+    headerName: "Client ID",
+    width: 120,
+    editable: true,
   },
   {
-    accessorKey: "phone",
-    header: "Phone",
+    field: "phone",
+    headerName: "Phone",
+    width: 130,
+    editable: true,
   },
   {
-    accessorKey: "clientPortal",
-    header: "Client Portal",
+    field: "clientPortal",
+    headerName: "Client Portal",
+    width: 150,
+    editable: true,
   },
   {
-    accessorKey: "assignee",
-    header: "Assignee",
+    field: "assignee",
+    headerName: "Assignee",
+    width: 200,
+    renderCell: (params) => (
+      <div className="flex items-center gap-2 h-full">
+        <img
+          src={params.value.avatar}
+          alt={params.value.name}
+          style={{
+            width: 30,
+            height: 30,
+            borderRadius: "50%",
+            marginRight: 8,
+          }}
+        />
+        <div className="flex flex-col justify-center">
+          <span className="text-sm font-medium">{params.value.name}</span>
+          <span className="text-xs text-gray-500">{params.value.desc}</span>
+        </div>
+      </div>
+    ),
+    editable: false,
   },
   {
-    accessorKey: "followers",
-    header: "Followers",
+    field: "followers",
+    headerName: "Followers",
+    width: 120,
+    editable: true,
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    field: "status",
+    headerName: "Status",
+    width: 120,
+    editable: true,
   },
   {
-    accessorKey: "applications",
-    header: "Applications",
+    field: "applications",
+    headerName: "Applications",
+    width: 120,
+    editable: true,
   },
   {
-    accessorKey: "lastUpdated",
-    header: "Last Updated",
+    field: "lastUpdated",
+    headerName: "Last Updated",
+    width: 150,
+    editable: true,
   },
 ];
