@@ -7,9 +7,10 @@ import filter from "../assets/svg/filter.svg";
 import date from "../assets/svg/date.svg";
 import check from "../assets/svg/check.svg";
 import sort from "../assets/svg/sort.svg";
-import { DataTable } from "./dataTable";
 import { columns } from "../data/columns";
 import { userData } from "../data/userData";
+import { Box } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 
 const MainHeroSection = () => {
   return (
@@ -170,7 +171,17 @@ const MainHeroSection = () => {
             </div>
           </div>
           {/* TABLE */}
-          <DataTable columns={columns} data={userData} />
+          <Box sx={{ height: "auto", width: "79vw", marginLeft: "12px" }}>
+            <DataGrid
+              rows={userData.map((data, index) => ({ id: index, ...data }))}
+              columns={columns}
+              hideFooter
+              checkboxSelection
+              disableRowSelectionOnClick
+              showCellVerticalBorder
+              showColumnVerticalBorder
+            />
+          </Box>
         </div>
       </div>
     </section>
