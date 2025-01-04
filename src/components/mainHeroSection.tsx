@@ -10,7 +10,7 @@ import sort from "../assets/svg/sort.svg";
 import { columns } from "../data/columns";
 import { userData as initialUserData, UserData } from "../data/userData";
 import { Box } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridRowId } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import EditableCell from "./editableCell";
 
@@ -21,25 +21,27 @@ const MainHeroSection = () => {
     setUserData(initialUserData);
   }, []);
 
-  const rowsWithAddClient = [
+  const rowsWithAddClient: UserData[] = [
     ...userData,
     {
       id: "addClientRow",
-      name: "+ Add Client's Details",
-      email: "",
-      avatar: "",
+      userData: {
+        name: "+ Add Client's Details",
+        email: "",
+        avatar: "",
+      },
       addedFrom: "",
       tags: "",
       internalId: "",
       clientId: "",
       phone: "",
       clientPortal: "",
-      assignee: "",
+      assignee: {},
       followers: "",
       status: "",
       applications: "",
       lastUpdated: "",
-    },
+    } as UserData,
   ];
 
   const handleRowUpdate = (updatedRow: any) => {
@@ -48,8 +50,16 @@ const MainHeroSection = () => {
     );
   };
 
-  const handleCommit = () => {
-    setUserData((prevData) => prevData);
+  const handleCommit = (
+    newRow: UserData,
+    oldRow: UserData,
+    params: { rowId: GridRowId }
+  ) => {
+    const updatedRow = { ...oldRow, ...newRow };
+    setUserData((prevData) =>
+      prevData.map((row) => (row.id === params.rowId ? updatedRow : row))
+    );
+    return updatedRow;
   };
 
   const addNewData = () => {
