@@ -8,20 +8,16 @@ import dateIcon from "../assets/svg/date.svg";
 import check from "../assets/svg/check.svg";
 import sort from "../assets/svg/sort.svg";
 import { columns } from "../data/columns";
-import { userData as initialUserData, UserData } from "../data/userData";
 import { Box } from "@mui/material";
-import { DataGrid, GridRowId } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import { UserDataProps } from "../hooks/useUserData";
 import EditableCell from "./editableCell";
+import useUserData from "../hooks/useUserData";
 
 const MainHeroSection = () => {
-  const [userData, setUserData] = useState([] as UserData[]);
+  const { userData, setUserData } = useUserData();
 
-  useEffect(() => {
-    setUserData(initialUserData);
-  }, []);
-
-  const rowsWithAddClient: UserData[] = [
+  const rowsWithAddClient: UserDataProps[] = [
     ...userData,
     {
       id: "addClientRow",
@@ -41,36 +37,19 @@ const MainHeroSection = () => {
       status: "",
       applications: "",
       lastUpdated: "",
-    } as UserData,
+    } as UserDataProps,
   ];
-
-  const handleRowUpdate = (updatedRow: any) => {
-    setUserData((prevData) =>
-      prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
-    );
-  };
-
-  const handleCommit = (
-    newRow: UserData,
-    oldRow: UserData,
-    params: { rowId: GridRowId }
-  ) => {
-    const updatedRow = { ...oldRow, ...newRow };
-    setUserData((prevData) =>
-      prevData.map((row) => (row.id === params.rowId ? updatedRow : row))
-    );
-    return updatedRow;
-  };
 
   const addNewData = () => {
     const random = Math.ceil(Math.random() * 9);
     const avatarUrl = `https://randomuser.me/api/portraits/lego/${random}.jpg`;
 
     const date = new Date();
-    let currentDate =
-      date.getDate() + "-" + date.getMonth() + 1 + "-" + date.getFullYear();
+    const currentDate = `${date.getDate()}-${
+      date.getMonth() + 1
+    }-${date.getFullYear()}`;
 
-    const newData: UserData = {
+    const newData: UserDataProps = {
       id: (userData.length + 1).toString(),
       userData: {
         name: `New Client ${random}`,
@@ -94,25 +73,29 @@ const MainHeroSection = () => {
       lastUpdated: currentDate,
     };
 
-    // Add new data to the end of the current userData array
-    setUserData((prevData) => {
-      return [...prevData, newData];
-    });
+    setUserData((prevData) => [...prevData, newData]);
+  };
+
+  const handleRowUpdate = (updatedRow: any) => {
+    setUserData((prevData) =>
+      prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
+    );
   };
 
   return (
-    <section className="flex flex-col gap-[8px] min-w-[100vh] w-full transition-all duration-[200ms] ease-in-out">
+    <section className="flex flex-col gap-2 min-h-screen w-full transition-all duration-200 ease-in-out">
       {/* TOP CLIENTS SECTION */}
-      <div className="flex justify-between items-center h-[60px] px-[24px] w-full rounded-[2px] bg-white dark:bg-[#121212]">
+      <div className="flex justify-between items-center h-[60px] px-6 w-full rounded-[2px] bg-white dark:bg-[#121212]">
         {/* Left Section: Title and Icon */}
-        <div className="flex gap-[12px]">
-          <img src={clients} alt="Clients" className="w-[24px] h-[24px]" />
+        <div className="flex gap-3">
+          <img src={clients} alt="Clients" className="w-6 h-6" />
           <h3 className="font-medium text-[16px] leading-[22.4px] text-[#344054] dark:text-white">
             Clients
           </h3>
         </div>
+
         {/* Right Section: Branch Selector and Options */}
-        <div className="flex gap-[24px]">
+        <div className="flex gap-6">
           {/* Branch Selector */}
           <div className="relative flex items-center gap-[8px]">
             <div className="relative w-full">
@@ -270,7 +253,7 @@ const MainHeroSection = () => {
                   column.field === "userData" || column.field === "assignee"
                     ? (params) => (
                         <EditableCell
-                          value={params.value}
+                          params={params}
                           onValueChange={(updatedValue) =>
                             handleRowUpdate({
                               ...params.row,
@@ -289,10 +272,6 @@ const MainHeroSection = () => {
               columnHeaderHeight={50}
               rowHeight={50}
               isCellEditable={(params) => params.id != "addClientRow"}
-              processRowUpdate={handleCommit}
-              onProcessRowUpdateError={(error) => {
-                error;
-              }}
               slots={{
                 columnHeaderSortIcon: () => (
                   <img src={sort} alt="Sort" className="w-[16px] h-[16px]" />

@@ -1,5 +1,6 @@
 import { GridColDef } from "@mui/x-data-grid";
 import uTurnRight from "../assets/svg/uturn-right.svg";
+import EditableCell from "../components/editableCell";
 
 export const columns: GridColDef[] = [
   {
@@ -8,7 +9,7 @@ export const columns: GridColDef[] = [
     width: 200,
     renderCell: (params) => {
       return params.id !== "addClientRow" ? (
-        <div className="flex items-center gap-[4px] h-full">
+        <div className="flex items-center gap-[4px] h-fulla">
           <img
             src={params.value.avatar}
             alt={params.value.name}
@@ -35,6 +36,17 @@ export const columns: GridColDef[] = [
         </div>
       );
     },
+    // renderEditCell: (params) => {
+    //   return (
+    //     <EditableCell
+    //       value={params.value}
+    //       onValueChange={(updatedData) => {
+    //         const updatedRow = { ...params.row, userData: updatedData };
+    //         params.api.updateRows([{ id: params.id, row: updatedRow }]);
+    //       }}
+    //     />
+    //   );
+    // },
     editable: true,
     filterable: false,
   },
@@ -112,6 +124,17 @@ export const columns: GridColDef[] = [
         ""
       );
     },
+    // renderEditCell: (params) => {
+    //   return (
+    //     <EditableCell
+    //       value={params.value}
+    //       onValueChange={(updatedAssignee) => {
+    //         const updatedRow = { ...params.row, assignee: updatedAssignee };
+    //         params.api.updateRows([{ id: params.id, row: updatedRow }]);
+    //       }}
+    //     />
+    //   );
+    // },
     editable: true,
     filterable: false,
   },
