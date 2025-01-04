@@ -4,17 +4,94 @@ import chevronDownWhite from "../assets/svg/chevron-down-white.svg";
 import dotsHorizontal from "../assets/svg/dots-horizontal.svg";
 import searchLg from "../assets/svg/search-lg.svg";
 import filter from "../assets/svg/filter.svg";
-import date from "../assets/svg/date.svg";
+import dateIcon from "../assets/svg/date.svg";
 import check from "../assets/svg/check.svg";
 import sort from "../assets/svg/sort.svg";
 import { columns } from "../data/columns";
-import { userData } from "../data/userData";
+import { userData as initialUserData, UserData } from "../data/userData";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useEffect, useState } from "react";
+import EditableCell from "./editableCell";
 
 const MainHeroSection = () => {
+  const [userData, setUserData] = useState([] as UserData[]);
+
+  useEffect(() => {
+    setUserData(initialUserData);
+  }, []);
+
+  const rowsWithAddClient = [
+    ...userData,
+    {
+      id: "addClientRow",
+      name: "+ Add Client's Details",
+      email: "",
+      avatar: "",
+      addedFrom: "",
+      tags: "",
+      internalId: "",
+      clientId: "",
+      phone: "",
+      clientPortal: "",
+      assignee: "",
+      followers: "",
+      status: "",
+      applications: "",
+      lastUpdated: "",
+    },
+  ];
+
+  const handleRowUpdate = (updatedRow: any) => {
+    setUserData((prevData) =>
+      prevData.map((row) => (row.id === updatedRow.id ? updatedRow : row))
+    );
+  };
+
+  const handleCommit = () => {
+    setUserData((prevData) => prevData);
+  };
+
+  const addNewData = () => {
+    const random = Math.ceil(Math.random() * 9);
+    const avatarUrl = `https://randomuser.me/api/portraits/lego/${random}.jpg`;
+
+    const date = new Date();
+    let currentDate =
+      date.getDate() + "-" + date.getMonth() + 1 + "-" + date.getFullYear();
+
+    const newData: UserData = {
+      id: (userData.length + 1).toString(),
+      userData: {
+        name: `New Client ${random}`,
+        email: `newclient${random}@example.com`,
+        avatar: avatarUrl,
+      },
+      addedFrom: "System",
+      tags: "-",
+      internalId: "ID296",
+      clientId: "-",
+      phone: "+9779867****",
+      clientPortal: "Deactivated",
+      assignee: {
+        name: "John Doe",
+        avatar: "/images/assignee.png",
+        desc: "Project Manager",
+      },
+      followers: random.toString(),
+      status: "In Progress",
+      applications: random.toString(),
+      lastUpdated: currentDate,
+    };
+
+    // Add new data to the end of the current userData array
+    setUserData((prevData) => {
+      return [...prevData, newData];
+    });
+  };
+
   return (
-    <section className="flex flex-col gap-[8px] h-[1000px] w-full transition-all duration-[200ms] ease-in-out">
+    <section className="flex flex-col gap-[8px] min-w-[100vh] w-full transition-all duration-[200ms] ease-in-out">
       {/* TOP CLIENTS SECTION */}
       <div className="flex justify-between items-center h-[60px] px-[24px] w-full rounded-[2px] bg-white dark:bg-[#121212]">
         {/* Left Section: Title and Icon */}
@@ -45,7 +122,7 @@ const MainHeroSection = () => {
       </div>
 
       {/* BOTTOM MAIN DATA SECTION */}
-      <div className="h-full w-full bg-white dark:bg-[#121212]">
+      <div className="min-h-[95vh] pb-[50px] w-full bg-white dark:bg-[#121212]">
         {/* Search Bar Section */}
         <div className="flex justify-between items-center h-[72px] px-[24px] border-b-[0.5px] border-[#EBEBF8]">
           <div className="flex gap-[20px]">
@@ -82,7 +159,7 @@ const MainHeroSection = () => {
               <div className="flex items-center gap-[8px] px-[12px] py-[8px] rounded border-[0.5px] border-[#D0D5DD]">
                 <div className="flex gap-[6px] items-center">
                   <img
-                    src={date}
+                    src={dateIcon}
                     alt="Search Icon"
                     className="w-[20px] h-[20px]"
                   />
@@ -149,7 +226,10 @@ const MainHeroSection = () => {
           {/* NEW CIENT SECTION */}
           <div className="w-full pl-[12px] flex items-center justify-between py-[12px]">
             {/* BUTTON */}
-            <button className="flex items-center gap-[6px] px-[12px] py-[6px] rounded bg-[#7474C9] text-white font-medium text-[12px] leading-[16.8px]">
+            <button
+              onClick={addNewData}
+              className="flex items-center gap-[6px] px-[12px] py-[6px] rounded bg-[#7474C9] text-white font-medium text-[12px] leading-[16.8px]"
+            >
               New Client
               <img
                 src={chevronDownWhite}
@@ -171,15 +251,98 @@ const MainHeroSection = () => {
             </div>
           </div>
           {/* TABLE */}
-          <Box sx={{ height: "auto", width: "79vw", marginLeft: "12px" }}>
+          <Box sx={{ height: "auto", marginLeft: "12px" }}>
             <DataGrid
-              rows={userData.map((data, index) => ({ id: index, ...data }))}
-              columns={columns}
+              rows={rowsWithAddClient}
+              columns={columns.map((column) => ({
+                ...column,
+                renderEditCell:
+                  column.field === "userData" || column.field === "assignee"
+                    ? (params) => (
+                        <EditableCell
+                          value={params.value}
+                          onValueChange={(updatedValue) =>
+                            handleRowUpdate({
+                              ...params.row,
+                              userData: updatedValue,
+                            })
+                          }
+                        />
+                      )
+                    : undefined,
+              }))}
               hideFooter
+              editMode="row"
               checkboxSelection
-              disableRowSelectionOnClick
               showCellVerticalBorder
               showColumnVerticalBorder
+              columnHeaderHeight={50}
+              rowHeight={50}
+              isCellEditable={(params) => params.id != "addClientRow"}
+              processRowUpdate={handleCommit}
+              onProcessRowUpdateError={(error) => {
+                error;
+              }}
+              slots={{
+                columnHeaderSortIcon: () => (
+                  <img src={sort} alt="Sort" className="w-[16px] h-[16px]" />
+                ),
+                columnMenuIcon: () => (
+                  <img
+                    src={dotsHorizontal}
+                    alt="Dots Horizontal"
+                    className="w-[16px] h-[16px]"
+                  />
+                ),
+              }}
+              slotProps={{
+                columnsManagement: {},
+              }}
+              sx={{
+                border: "0.5px solid #EAECF0",
+                borderCollapse: "collapse",
+                "& .MuiDataGrid-cell": {
+                  borderBottom: "0.5px solid #EAECF0",
+                  padding: "8px 16px",
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "12px",
+                  lineHeight: "16.8px",
+                  color: "#344054",
+                  fontWeight: "400",
+                },
+                "& .MuiDataGrid-checkboxInput": {
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "6px",
+                  borderWidth: "1px",
+                },
+                "& .MuiCheckbox-root": {
+                  "&.Mui-checked": {
+                    color: "#7474C9",
+                  },
+                  "&:hover": {
+                    backgroundColor: "rgba(116, 116, 201, 0.2)",
+                  },
+                  "&.Mui-checked:hover": {
+                    backgroundColor: "rgba(116, 116, 201, 0.2)",
+                  },
+                  "&.MuiSvgIcon-root": {
+                    color: "#7474C9",
+                    borderRadius: "6px",
+                  },
+                },
+                "& .MuiDataGrid-columnHeaders": {
+                  fontSize: "12px",
+                  fontWeight: 500,
+                  lineHeight: "16.8px",
+                  textAlign: "left",
+                  textUnderlinePosition: "from-font",
+                  textDecorationSkipInk: "none",
+                  color: "#344054",
+                },
+              }}
+              className="!dark:text-white"
             />
           </Box>
         </div>

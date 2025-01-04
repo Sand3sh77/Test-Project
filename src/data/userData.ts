@@ -1,4 +1,5 @@
 export interface UserData {
+  id: string;
   userData: {
     name: string;
     email: string;
@@ -24,10 +25,11 @@ export interface UserData {
 
 export const userData: UserData[] = [
   {
+    id: "1",
     userData: {
       name: "Nisha Giri Puri",
       email: "example@gmail.com",
-      avatar: "src/assets/images/nisha.png",
+      avatar: "/images/nisha.png",
     },
     addedFrom: "System",
     tags: "-",
@@ -37,7 +39,7 @@ export const userData: UserData[] = [
     clientPortal: "Deactivated",
     assignee: {
       name: "Justin",
-      avatar: "src/assets/images/assignee.png",
+      avatar: "/images/assignee.png",
       desc: "Interlace Studies Pty",
     },
     followers: "Allison",
@@ -46,10 +48,11 @@ export const userData: UserData[] = [
     lastUpdated: "24-09-2023",
   },
   {
+    id: "2",
     userData: {
       name: "Abram Press",
       email: "example@gmail.com",
-      avatar: "src/assets/images/abram.png",
+      avatar: "/images/abram.png",
     },
     addedFrom: "System",
     tags: "-",
@@ -59,7 +62,7 @@ export const userData: UserData[] = [
     clientPortal: "Deactivated",
     assignee: {
       name: "Miracle",
-      avatar: "src/assets/images/assignee.png",
+      avatar: "/images/assignee.png",
       desc: "Interlace Studies Pty",
     },
     followers: "Maria",
@@ -68,10 +71,11 @@ export const userData: UserData[] = [
     lastUpdated: "24-09-2023",
   },
   {
+    id: "3",
     userData: {
       name: "Charlie Curtis",
       email: "example@gmail.com",
-      avatar: "src/assets/images/charlie.png",
+      avatar: "/images/charlie.png",
     },
     addedFrom: "System",
     tags: "-",
@@ -81,7 +85,7 @@ export const userData: UserData[] = [
     clientPortal: "Deactivated",
     assignee: {
       name: "Nolan",
-      avatar: "src/assets/images/assignee.png",
+      avatar: "/images/assignee.png",
       desc: "Interlace Studies Pty",
     },
     followers: "Makenna",
@@ -90,10 +94,11 @@ export const userData: UserData[] = [
     lastUpdated: "24-09-2023",
   },
   {
+    id: "4",
     userData: {
       name: "Jocelyn Curtis",
       email: "example@gmail.com",
-      avatar: "src/assets/images/jocelyn.png",
+      avatar: "/images/jocelyn.png",
     },
     addedFrom: "System",
     tags: "-",
@@ -103,7 +108,7 @@ export const userData: UserData[] = [
     clientPortal: "Deactivated",
     assignee: {
       name: "Alena",
-      avatar: "src/assets/images/assignee.png",
+      avatar: "/images/assignee.png",
       desc: "Interlace Studies Pty",
     },
     followers: "Ashlynn",
@@ -112,10 +117,11 @@ export const userData: UserData[] = [
     lastUpdated: "24-09-2023",
   },
   {
+    id: "5",
     userData: {
       name: "Dulce Calzoni",
       email: "example@gmail.com",
-      avatar: "src/assets/images/dulce.png",
+      avatar: "/images/dulce.png",
     },
     addedFrom: "System",
     tags: "-",
@@ -125,7 +131,7 @@ export const userData: UserData[] = [
     clientPortal: "Deactivated",
     assignee: {
       name: "Madelyn",
-      avatar: "src/assets/images/assignee.png",
+      avatar: "/images/assignee.png",
       desc: "Interlace Studies Pty",
     },
     followers: "Giana",
@@ -134,10 +140,11 @@ export const userData: UserData[] = [
     lastUpdated: "24-09-2023",
   },
   {
+    id: "6",
     userData: {
       name: "Adison Curtis",
       email: "example@gmail.com",
-      avatar: "src/assets/images/adison.png",
+      avatar: "/images/adison.png",
     },
     addedFrom: "System",
     tags: "-",
@@ -147,7 +154,7 @@ export const userData: UserData[] = [
     clientPortal: "Deactivated",
     assignee: {
       name: "Mira",
-      avatar: "src/assets/images/assignee.png",
+      avatar: "/images/assignee.png",
       desc: "Interlace Studies Pty",
     },
     followers: "Marcus",
@@ -156,10 +163,11 @@ export const userData: UserData[] = [
     lastUpdated: "24-09-2023",
   },
   {
+    id: "7",
     userData: {
       name: "Tatiana Septimus",
       email: "example@gmail.com",
-      avatar: "src/assets/images/tatiana.png",
+      avatar: "/images/tatiana.png",
     },
     addedFrom: "System",
     tags: "-",
@@ -169,7 +177,7 @@ export const userData: UserData[] = [
     clientPortal: "Deactivated",
     assignee: {
       name: "Kaiya",
-      avatar: "src/assets/images/assignee.png",
+      avatar: "/images/assignee.png",
       desc: "Interlace Studies Pty",
     },
     followers: "Livia",
@@ -178,10 +186,11 @@ export const userData: UserData[] = [
     lastUpdated: "24-09-2023",
   },
   {
+    id: "8",
     userData: {
       name: "Jaydon Levin",
       email: "example@gmail.com",
-      avatar: "src/assets/images/jaydon.png",
+      avatar: "/images/jaydon.png",
     },
     addedFrom: "System",
     tags: "-",
@@ -191,7 +200,7 @@ export const userData: UserData[] = [
     clientPortal: "Deactivated",
     assignee: {
       name: "Gustavo",
-      avatar: "src/assets/images/assignee.png",
+      avatar: "/images/assignee.png",
       desc: "Interlace Studies Pty",
     },
     followers: "Kaylynn",

@@ -51,4 +51,12 @@
         scrollbar-width: 0;
         /* Firefox */
     }
+
+    .debug {
+        border: 1px solid red;
+    }
+
+    .noPaddingCell {
+        padding: 0 !important;
+    }
 }
