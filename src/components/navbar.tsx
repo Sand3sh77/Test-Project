@@ -68,7 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
 
             {/* User Avatar */}
             <img
-              src="src/assets/images/avatar.png"
+              src="/images/avatar.png"
               alt="Avatar"
               className="w-[40.5px] h-[40.5px] rounded-full"
             />
@@ -83,4 +83,3 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
 };
 
 export default Navbar;
-

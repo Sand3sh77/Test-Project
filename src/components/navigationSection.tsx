@@ -3,9 +3,7 @@ import chevronDown from "../assets/svg/chevron-down.svg";
 import searchLg from "../assets/svg/search-lg.svg";
 import chevronLeft from "../assets/svg/chevron-left.svg";
 import dotsHorizontal from "../assets/svg/dots-horizontal.svg";
-import navigationButtons, {
-  NavigationButton,
-} from "../data/navigationButtons";
+import navigationButtons, { NavigationButton } from "../data/navigationButtons";
 
 const NavigationSection = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -41,7 +39,7 @@ const NavigationSection = () => {
   };
 
   return (
-    <section className="h-[1000px] bg-white dark:bg-[#121212] transition-[width] duration-[800ms] ease-in-out">
+    <section className="h-full  bg-white dark:bg-[#121212] transition-[width] duration-[800ms] ease-in-out">
       {/* TOP SECTION */}
       <div
         className={`relative flex justify-between ${
