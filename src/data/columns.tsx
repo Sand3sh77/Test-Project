@@ -35,17 +35,6 @@ export const columns: GridColDef[] = [
         </div>
       );
     },
-    // renderEditCell: (params) => {
-    //   return (
-    //     <EditableCell
-    //       value={params.value}
-    //       onValueChange={(updatedData) => {
-    //         const updatedRow = { ...params.row, userData: updatedData };
-    //         params.api.updateRows([{ id: params.id, row: updatedRow }]);
-    //       }}
-    //     />
-    //   );
-    // },
     editable: true,
     filterable: false,
   },
@@ -123,17 +112,6 @@ export const columns: GridColDef[] = [
         ""
       );
     },
-    // renderEditCell: (params) => {
-    //   return (
-    //     <EditableCell
-    //       value={params.value}
-    //       onValueChange={(updatedAssignee) => {
-    //         const updatedRow = { ...params.row, assignee: updatedAssignee };
-    //         params.api.updateRows([{ id: params.id, row: updatedRow }]);
-    //       }}
-    //     />
-    //   );
-    // },
     editable: true,
     filterable: false,
   },

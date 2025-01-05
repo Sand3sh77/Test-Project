@@ -277,13 +277,6 @@ const MainHeroSection = () => {
                 columnHeaderSortIcon: () => (
                   <img src={sort} alt="Sort" className="w-[16px] h-[16px]" />
                 ),
-                // columnMenuIcon: () => (
-                //   <img
-                //     src={dotsHorizontal}
-                //     alt="Dots Horizontal"
-                //     className="w-[16px] h-[16px]"
-                //   />
-                // ),
               }}
               slotProps={{
                 columnsManagement: {},
@@ -332,11 +325,8 @@ const MainHeroSection = () => {
                   color: "#344054",
                 },
                 "& .MuiDataGrid-scrollbar": {
-                  display: "none",
-                },
-                "& .MuiDataGrid-filler": {
-                  display: "none",
-                },
+                  height: "8px"
+                }
               }}
               className="!dark:text-white"
             />
