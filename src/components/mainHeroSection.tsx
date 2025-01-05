@@ -277,13 +277,13 @@ const MainHeroSection = () => {
                 columnHeaderSortIcon: () => (
                   <img src={sort} alt="Sort" className="w-[16px] h-[16px]" />
                 ),
-                columnMenuIcon: () => (
-                  <img
-                    src={dotsHorizontal}
-                    alt="Dots Horizontal"
-                    className="w-[16px] h-[16px]"
-                  />
-                ),
+                // columnMenuIcon: () => (
+                //   <img
+                //     src={dotsHorizontal}
+                //     alt="Dots Horizontal"
+                //     className="w-[16px] h-[16px]"
+                //   />
+                // ),
               }}
               slotProps={{
                 columnsManagement: {},
