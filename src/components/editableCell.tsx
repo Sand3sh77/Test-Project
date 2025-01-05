@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 
 const EditableCell = ({
   params,
+  column,
   onValueChange,
 }: {
   params: any;
+  column: string;
   onValueChange: (updatedValue: any) => void;
 }) => {
   const [editableValue, setEditableValue] = useState(params.value);
@@ -21,7 +23,12 @@ const EditableCell = ({
       ...prev,
       [field]: e.target.value,
     }));
-    onValueChange(editableValue);
+    params.api.setEditCellValue({
+      id: params.id,
+      field: column,
+      value: { ...editableValue, [field]: e.target.value },
+    });
+    onValueChange({ ...editableValue, [field]: e.target.value });
   };
 
   return (

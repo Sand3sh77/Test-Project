@@ -1,6 +1,7 @@
+import { GridValidRowModel } from "@mui/x-data-grid";
 import { useState } from "react";
 
-export interface UserDataProps {
+export interface UserDataProps extends GridValidRowModel {
   id: string;
   userData: {
     name: string;

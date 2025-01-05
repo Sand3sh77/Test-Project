@@ -245,7 +245,7 @@ const MainHeroSection = () => {
           </div>
           {/* TABLE */}
           <Box sx={{ height: "auto", marginLeft: "12px" }}>
-            <DataGrid
+            <DataGrid<UserDataProps>
               rows={rowsWithAddClient}
               columns={columns.map((column) => ({
                 ...column,
@@ -254,10 +254,11 @@ const MainHeroSection = () => {
                     ? (params) => (
                         <EditableCell
                           params={params}
+                          column={column.field}
                           onValueChange={(updatedValue) =>
                             handleRowUpdate({
                               ...params.row,
-                              userData: updatedValue,
+                              [column.field]: updatedValue,
                             })
                           }
                         />
@@ -329,6 +330,12 @@ const MainHeroSection = () => {
                   textUnderlinePosition: "from-font",
                   textDecorationSkipInk: "none",
                   color: "#344054",
+                },
+                "& .MuiDataGrid-scrollbar": {
+                  display: "none",
+                },
+                "& .MuiDataGrid-filler": {
+                  display: "none",
                 },
               }}
               className="!dark:text-white"

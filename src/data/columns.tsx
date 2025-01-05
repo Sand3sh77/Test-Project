@@ -1,6 +1,5 @@
 import { GridColDef } from "@mui/x-data-grid";
 import uTurnRight from "../assets/svg/uturn-right.svg";
-import EditableCell from "../components/editableCell";
 
 export const columns: GridColDef[] = [
   {

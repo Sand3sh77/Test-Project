@@ -3,60 +3,59 @@
 @tailwind utilities;
 
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* SCROLLBAR */
 *::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;
 }
 
 *::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 6px;
+  background: #f1f1f1;
+  border-radius: 6px;
 }
 
 *::-webkit-scrollbar-thumb {
-    background: #979797;
-    border-radius: 6px;
+  background: #979797;
+  border-radius: 6px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: rgb(63, 63, 63);
+  background: rgb(63, 63, 63);
 }
 
 @layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: 0;
+    /* Firefox */
+  }
 
-    /* Hide scrollbar for IE, Edge and Firefox */
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        /* IE and Edge */
-        scrollbar-width: 0;
-        /* Firefox */
-    }
+  .debug {
+    border: 1px solid red;
+  }
 
-    .debug {
-        border: 1px solid red;
-    }
-
-    .noPaddingCell {
-        padding: 0 !important;
-    }
+  .noPaddingCell {
+    padding: 0 !important;
+  }
 }
